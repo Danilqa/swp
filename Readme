@@ -1,0 +1,32 @@
+Update mraa and upm:
+
+echo "src mraa-upm http://iotdk.intel.com/repos/3.5/intelgalactic" > 
+/etc/opkg/mraa-upm.conf
+
+opkg update
+opkg install mraa
+opkg install upm
+
+Build simple blink on board:
+gcc -g blink_onboard.c -o blink_onboard -lmraa
+
+Build simple blink of diod (run ./blink-io "number D2-8":
+gcc -g blink-io.c -o blink-io -lmraa
+
+
+Build simple analog input (connect to A0):
+gcc -g analogin_a0.c -o analogin_a0 -lmraa
+
+Build simple digit input and output (connect diod to D4 and button to D2):
+gcc -g motion_d.c -o motion_d -lmraa
+
+
+Build upm 3-axis sensor :
+g++ MMA7660FC_Demo.cpp -o MMA7660_demo -lupm-mma7660 -lmraa 
+-I/usr/include/upm/
+
+Build upm lcd display:
+g++ jhd1313m1-lcd.cxx -o LCD_test -lupm-i2clcd -lmraa -I/usr/include/upm/
+
+
+
